@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+
+{% block header %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 style="text-align: center; font-weight: bold;" class='display-3'>Welcome to My Blog</h1>
+        <hr class="my-2">
+        <blockquote class="blockquote" style="text-align: center;">
+            <p class="mb-0">A lovely tale of human life.</p>
+            <footer class="blockquote-footer"> <cite title="Source Title">John Keats</cite></footer>
+        </blockquote>
+    </div>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="display: block">
+        {% for title in topics %}
+        <div class="container-fluid">
+            <div class="card bg-default articles">
+                <div class="card-body">
+                    <h2 class="card-title">{{ title }}</h2> - <p class="lead">{{ title.owner }}</p>
+                    {% for entry in title.blogentries.all %}
+                    <p class="card-text">{{ entry | truncatechars:300 }}</p>
+                    {% endfor %}
+                    
+                    <a href="{% url 'blog:blog_post' title.slug %}">
+                        <button type="button" class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>
+                            Read More</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="container" id='pagination'>
+            <div aria-label="Page navigation">
+                <ul class="pagination pagination-lg justify-content-center">
+                    {% if topics.has_previous %}
+                    <li class="page-item justify-content-end">
+                        <a href="?page={{ topics.previous_page_number }}">
+                                <button class="btn btn-primary page-btn" style="float: right;">Newer Posts <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                        </a>
+                    </li>
+                    {% endif %}
+    
+                    {% if topics.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ topics.next_page_number }}">
+                                <button class="btn btn-primary page-btn"><i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                    Older Posts</button>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+
+
+{% endblock content %}

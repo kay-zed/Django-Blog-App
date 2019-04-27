@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+	<form method="post" role="form" action="{% url 'blog:new_post'%}">
+		{% csrf_token %}
+		<h2>New Post</h2>
+		{% bootstrap_field title_form.title %}
+		{% bootstrap_field entry_form.body %}
+		{% buttons %}
+		<input type="submit" value="Submit" class="btn btn-default">
+		{% endbuttons %}
+	</form>
+</div>
+{% endblock content %}

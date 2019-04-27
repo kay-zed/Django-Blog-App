@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div class="container-fluid" style="margin-top: 40px;">
+    <div class="row">
+        <div class="col-lg-6 offset-md-2">
+            <h1 class="display-5" style="margin-bottom: 20px;">Register a New Account</h1>
+            <form action="{% url 'blog:sign_up' %}" method="POST">
+                {% csrf_token %}
+                {% bootstrap_field form.username show_label=False %}
+                {% bootstrap_field form.password1 show_label=False %}
+                {% bootstrap_field form.password2 show_label=False %}
+
+                {% buttons %}
+                <button name="submit" class="btn btn-default">Sign Up</button>
+                {% endbuttons %}
+                <input type="hidden" name="next" value="{% url 'blog:index' %}">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

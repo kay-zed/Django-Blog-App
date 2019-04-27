@@ -1,0 +1,49 @@
+html {
+    position: relative;
+    min-height: 100%;
+    }
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: whitesmoke;
+}
+
+#footer {
+        margin-top: 9px;
+        font-size: 13px;;
+}
+
+a {
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.articles {
+    margin-bottom: 40px;
+}
+
+.navs {
+    float: right;
+}
+
+.page-btn {
+    margin-bottom: 40px;
+}
+
+#blog_post {
+    font-size: 20px;
+    font-family: Lora,'Times New Roman',serif;
+
+}
+
+

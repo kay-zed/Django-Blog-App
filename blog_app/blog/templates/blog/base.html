@@ -1,0 +1,78 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>My Blog</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light navbar-fixed-top">
+        <a class="navbar-brand" href="/">My Blog</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">about</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'blog:new_post' %}" class="nav-link">new post</a>
+                </li>
+
+            </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-right">
+                <li class="muted" style="margin-right: 20px;">
+                    Logged in as {{ user }}
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'blog:logout' %}"><button class="btn btn-sm btn-default">Log Out</button></a>
+                </li>
+            </ul>
+            {% else %}
+            <a class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 6px;" href="{% url 'blog:login' %}">Log In</a>
+            {% endif %}
+            
+        </div>
+    </nav>
+
+    {% block header %}{% endblock header %}
+    {% block content %}{% endblock %}
+
+    <footer class="footer" style="text-align: center;">
+        <p style="color: black;" id='footer'>Coded with <i class="fa fa-heart-o" aria-hidden="true"></i> Django
+            <br>&copy; oluwakayode
+        </p>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        $('#exampleModal').on('show.bs.modal', event => {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+            // Use above variables to manipulate the DOM
+            
+        });
+    </script>
+</body>
+
+</html>
